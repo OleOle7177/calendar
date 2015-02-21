@@ -24,7 +24,7 @@ RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
-  config.use_transactional_fixtures = false
+  # config.use_transactional_fixtures = false
   
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation
