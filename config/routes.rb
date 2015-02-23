@@ -2,9 +2,8 @@ Calendar::Application.routes.draw do
 
   resources :events
 
-  devise_for :users
-
   root to: 'events#index'
-  
+
+  devise_for :users, :controllers => { :registrations => 'registrations' }   
 
 end
