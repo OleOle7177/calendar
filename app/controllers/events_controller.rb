@@ -5,6 +5,8 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
+    @date = params[:date] ? Date.parse(params[:date]) : Date.today
+    @event_instances = EventInstance.occurrences_between(start_date: @date.prev_month.at_end_of_month-7, end_date: @date.next_month.at_beginning_of_month+7, current_id: current_user.id).group_by(&:date)
   end
 
   # GET /events/1
