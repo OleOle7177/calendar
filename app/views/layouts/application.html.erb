@@ -12,10 +12,16 @@
 	<%= render 'layouts/menu' %>
 <% end %>
 
-<div class="notice"><%= notice %></div>
-<div class="notice"><%= alert %></div>
 
-<%= yield %>
 
+<div class="container">
+	<% unless notice.nil? && alert.nil? %>
+		<div class="alert"><%= notice %>
+		<%= alert %></div>
+	<% end %>
+	<div class="row">
+		<%= yield %>
+	</div>
+</div>
 </body>
 </html>
