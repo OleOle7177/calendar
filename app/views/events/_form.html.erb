@@ -17,12 +17,30 @@
   </div>
   <div class="field">
     <%= f.label :date %><br>
-    <%= f.datetime_select :date %>
+    <%= f.date_select :date %>
   </div>
+
   <div class="field">
-    <%= f.label :repeat %><br>
-    <%= f.number_field :repeat %>
+    <%= f.label :repeat %><br/>
+
+   
+    <%= f.radio_button :repeat, 0, checked: (current_page?(controller: 'events', action: 'new')) %>
+    <%= label :repeat_never, 'no'%><br/>
+
+    <%= f.radio_button :repeat, 1 %>
+    <%= label :repeat_daily, 'daily'%><br/>
+
+    <%= f.radio_button :repeat, 30 %> 
+    <%= label :repeat_monthly, 'monthly'%><br/>
+
+    <%= f.radio_button :repeat, 365 %>
+    <%= label :repeat_yearly, 'yearly'%>
+
+   
   </div>
+
+  <%= f.hidden_field :user_id, value: current_user.id %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

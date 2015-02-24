@@ -4,9 +4,13 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
     @event_instances = EventInstance.occurrences_between(start_date: @date.prev_month.at_end_of_month-7, end_date: @date.next_month.at_beginning_of_month+7, current_id: current_user.id).group_by(&:date)
+  end
+
+  def all 
+    @date = params[:date] ? Date.parse(params[:date]) : Date.today
+    @event_instances = EventInstance.occurrences_between(start_date: @date.prev_month.at_end_of_month-7, end_date: @date.next_month.at_beginning_of_month+7).group_by(&:date)
   end
 
   # GET /events/1
@@ -21,6 +25,9 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
+     if current_user.id != @event.user_id
+      redirect_to all_url, notice: "This is not your event" 
+    end
   end
 
   # POST /events
@@ -71,6 +78,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :date, :repeat)
+      params.require(:event).permit(:name, :date, :repeat, :user_id)
     end
 end
