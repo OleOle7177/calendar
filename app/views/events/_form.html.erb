@@ -12,16 +12,16 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.label :name %>
+    <%= f.text_field :name, autofocus: true %>
   </div>
   <div class="field">
-    <%= f.label :date %><br>
-    <%= f.date_select :date %>
+    <%= f.label :date %>
+    <%= f.date_select :date, :order => [:day, :month, :year] %>
   </div>
 
   <div class="field">
-    <%= f.label :repeat %><br/>
+    <%= f.label :repeat, 'Repeat:' %>
 
    
     <%= f.radio_button :repeat, 0, checked: (current_page?(controller: 'events', action: 'new')) %>
@@ -42,6 +42,6 @@
   <%= f.hidden_field :user_id, value: current_user.id %>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: 'btn btn-primary' %>
   </div>
 <% end %>
