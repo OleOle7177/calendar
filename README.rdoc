@@ -1,28 +1,21 @@
-== README
+# Тестовое приложение: Календарь  
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* пользователи могут зарегистрироваться на сайте, указав email, пароль (обязательно),  полное имя (необязательно) и url аватарки (необязательно). 
 
-Things you may want to cover:
+* зарегистрированный пользователь может изменить свой email, пароль и полное имя.
 
-* Ruby version
+* зарегистрированный пользователь может просмотреть список своих событий в календаре.
 
-* System dependencies
+* зарегистрированный пользователь может просмотреть список всех событий в календаре.
 
-* Configuration
+* когда пользователь кликает на ссылку создания нового события, то появляется форма для создания нового события. События имеют название (обязательно) и дату (обязательно).
 
-* Database creation
+* событие может быть повторяющимся каждый день, каждую неделю, каждый месяц, каждый год 
+когда пользователь кликает на существующее событие в календаре, то появляется форма для редактирования события. 
 
-* Database initialization
+####  Список источников: 
 
-* How to run the test suite
+* Документация по гему ice_cube: https://github.com/seejohnrun/ice_cube
+* Пример приложения с ice_cube: https://gist.github.com/nathancolgate/4998196
+* Railscast #213 "Calendars": http://railscasts.com/episodes/213-calendars
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.

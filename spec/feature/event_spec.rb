@@ -1,21 +1,31 @@
 require 'rails_helper'
+include Warden::Test::Helpers
+Warden.test_mode!
 
-
-RSpec.describe Event, :type => :feature do  
+RSpec.describe Event, :type => :feature do 
+ before(:each) do 
+    @user = FactoryGirl.create(:user)
+    login_as(@user, :scope => :user)
+  end  
   
-  it "shows new event after create" do 
+  it "shows new event after create and update all connected events" do 
   	visit new_event_path
-  	fill_in "Name", with: "New super event"
-   	click_button "Create"
-  	expect(page).to have_content("New super event")
-  end
+   
+  	fill_in :event_name, with: "New super event"
+    choose('event_repeat_1')
 
-  it "edits all connected events in calendar" do 
-  	event = FactoryGirl.create(:event, date: Date.today)
-  	visit edit_event_path(event)
-  	fill_in "Name", with: "Mega event"
+    click_button "Create Event"
+  	expect(page).to have_content("New super event")  
+
+    print page.html
+    within(".today") do 
+  	   click_link "New super event"
+    end
+  
+  	fill_in :event_name, with: "Mega event"
   	click_button "Update"
   	expect(page).to have_content("Mega event")
-  	expect(page).not_to have_content(event.name)
+  	expect(page).not_to have_content("New super event")
   end
+
 end
