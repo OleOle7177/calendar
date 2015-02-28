@@ -9,7 +9,7 @@ class EventInstance
 		start_date = options[:start_date]
 		end_date = options[:end_date]
 		user_id = options[:current_id]
-		results = user_id ? Event.where(user_id: user_id).where("(date > ? AND date < ? AND repeat == ?) OR (date < ? and repeat != ?)", start_date, end_date, '0', end_date, '0') : Event.where("(date > ? AND date < ? AND repeat == ?) OR (date < ? and repeat != ?)", start_date, end_date, '0', end_date, '0')
+		results = user_id ? Event.where(user_id: user_id).where("(date > ? AND date < ? AND repeat = ?) OR (date < ? and repeat != ?)", start_date, end_date, 0, end_date, 0) : Event.where("(date > ? AND date < ? AND repeat = ?) OR (date < ? and repeat != ?)", start_date, end_date, 0, end_date, 0)
 			
 		results.map { |event| 
 		event.schedule.occurrences_between(start_date, end_date).map { |date|
